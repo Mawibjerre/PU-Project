@@ -1,0 +1,50 @@
+using UnityEngine;
+
+public class PlayerDash : MonoBehaviour
+{
+    public float dashSpeed = 20f;
+    public float dashDuration = 0.2f;
+    public float dashCooldown = 1f;
+
+    private float dashTime;
+    private float dashCooldownTimer;
+    private Rigidbody2D rb;
+    private Vector2 dashDirection;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        if (dashCooldownTimer > 0)
+            dashCooldownTimer -= Time.deltaTime;
+
+        // Start dash when Shift is pressed
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTimer <= 0)
+        {
+            // Convert mouse position to world space and find direction
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dashDirection = (mouseWorldPos - transform.position).normalized;
+
+            dashTime = dashDuration;
+            dashCooldownTimer = dashCooldown;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (dashTime > 0)
+        {
+            rb.velocity = dashDirection * dashSpeed;
+            dashTime -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            // Normal movement (optional — you can integrate your own movement here)
+            Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+            rb.velocity = moveInput * 5f; 
+        }
+    }
+}
