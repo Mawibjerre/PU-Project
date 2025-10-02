@@ -368,9 +368,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6
-        y: 174
+        y: 173
         width: 72
-        height: 72
+        height: 73
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -389,13 +389,13 @@ TextureImporter:
       name: BG_13
       rect:
         serializedVersion: 2
-        x: 88
-        y: 173
-        width: 72
-        height: 73
+        x: 87
+        y: 172
+        width: 73
+        height: 74
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 1, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -412,9 +412,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 169
-        y: 174
+        y: 173
         width: 73
-        height: 72
+        height: 73
       alignment: 9
       pivot: {x: 0.48230723, y: 0.5530788}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -548,7 +548,7 @@ TextureImporter:
         width: 35
         height: 3
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -570,7 +570,7 @@ TextureImporter:
         width: 72
         height: 73
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

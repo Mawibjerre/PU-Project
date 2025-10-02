@@ -521,6 +521,7 @@ GameObject:
   - component: {fileID: 1111288126}
   - component: {fileID: 1111288130}
   - component: {fileID: 1111288129}
+  - component: {fileID: 1111288131}
   m_Layer: 5
   m_Name: Quit
   m_TagString: Untagged
@@ -673,6 +674,21 @@ MonoBehaviour:
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
+--- !u!114 &1111288131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111288124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1331545257
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,6 +994,7 @@ GameObject:
   - component: {fileID: 2111488852}
   - component: {fileID: 2111488851}
   - component: {fileID: 2111488854}
+  - component: {fileID: 2111488855}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -1115,6 +1132,21 @@ MonoBehaviour:
   hoverScale: {x: 1.1, y: 1.1, z: 1}
   clickScale: {x: 0.9, y: 0.9, z: 1}
   animationSpeed: 10
+--- !u!114 &2111488855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111488849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
