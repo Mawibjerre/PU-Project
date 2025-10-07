@@ -32,11 +32,11 @@ public class KillBlock : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Destroy player on contact
-            Destroy(other.gameObject);
-
-            // Optional: trigger respawn, game over, or damage logic here
-            // other.GetComponent<PlayerHealth>()?.TakeDamage(999);
+            PlayerRespawn player = other.GetComponent<PlayerRespawn>();
+            if (player != null)
+            {
+                player.Respawn();
+            }
         }
     }
-}
+} // <-- this was missing
