@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,10 +13,15 @@ public class TopDownMouseLookController : MonoBehaviour
     float angle;
     Camera cam;
 
-    [Header("DashSettings")]
+    [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 10f;
     [SerializeField] float dashDuration = 0.2f;
     [SerializeField] float dashCooldown = 1f;
+
+    [Header("Audio Settings")]
+    public AudioClip dashSound;      // Drag your dash sound here
+    public float dashVolume = 1f;    // Adjust volume
+    private AudioSource audioSource;
 
     private bool isDashing;
     private bool isOnCooldown;
@@ -24,28 +30,32 @@ public class TopDownMouseLookController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
+
+        // Add or get AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.playOnAwake = false;
     }
 
     void Update()
     {
-        // Hvis vi er midt i dash → stop input
-        if (isDashing)
-        {
-            return;
-        }
+        if (isDashing) return;
 
-        // Movement input (skal altid virke, selv under cooldown)
+        // Movement input
         moveDir.x = Input.GetAxisRaw("Horizontal");
         moveDir.y = Input.GetAxisRaw("Vertical");
         moveDir = moveDir.normalized * speed;
 
-        // Aim med mus
+        // Aim with mouse
         mousePos = Input.mousePosition;
         Vector2 screenPos = cam.WorldToScreenPoint(transform.position);
         Vector2 mouseDistance = mousePos - screenPos;
         angle = Mathf.Atan2(mouseDistance.y, mouseDistance.x) * Mathf.Rad2Deg;
 
-        // Dash input (kun hvis ikke på cooldown)
+        // Dash input
         if (Input.GetKeyDown(KeyCode.Space) && !isOnCooldown)
         {
             StartCoroutine(Dash());
@@ -54,10 +64,7 @@ public class TopDownMouseLookController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isDashing)
-        {
-            return;
-        }
+        if (isDashing) return;
 
         transform.rotation = Quaternion.Euler(0, 0, angle);
         rb.linearVelocity = moveDir;
@@ -68,14 +75,20 @@ public class TopDownMouseLookController : MonoBehaviour
         isDashing = true;
         isOnCooldown = true;
 
-        // Giv karakteren fart i dash-retningen
+        // 🔊 Play dash sound
+        if (dashSound != null)
+        {
+            audioSource.PlayOneShot(dashSound, dashVolume);
+        }
+
+        // Apply dash velocity
         rb.linearVelocity = new Vector2(moveDir.x * dashSpeed, moveDir.y * dashSpeed);
 
-        // Vent dash varighed
+        // Wait dash duration
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
 
-        // Vent cooldown før næste dash
+        // Wait cooldown
         yield return new WaitForSeconds(dashCooldown);
         isOnCooldown = false;
     }
